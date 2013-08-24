@@ -1,0 +1,99 @@
+﻿<Window x:Class="LinqStudy2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:LinqStudy2"
+        Title="MainWindow" Height="354" Width="756">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <TabControl>
+            <TabItem Header="全件表示">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid AutoGenerateColumns="True" Name="dataGrid1" ItemsSource="{Binding Path=AllStudents}" IsReadOnly="True"/>
+                    <Button Content="全件取得" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Command="{Binding Path=GetAllStudentsCommand}"/>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="学年総合順位">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Path=学年総合順位}" IsReadOnly="True"/>
+                    <Button Content="総合順位" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Command="{Binding Path=学年総合順位Command}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="クラス別順位">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ListBox Margin="3" DisplayMemberPath="クラス名" ItemsSource="{Binding クラス別順位}" IsSynchronizedWithCurrentItem="True"></ListBox>
+                    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Path=クラス別順位/順位}" IsReadOnly="True" Grid.Column="1"/>
+                    <Button Content="順位" Grid.Row="1" Grid.Column="1" Margin="3" Height="23" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Command="{Binding Path=クラス別順位Command}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="科目別順位">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ListBox Margin="3" DisplayMemberPath="試験名" ItemsSource="{Binding Path=科目別順位}" IsSynchronizedWithCurrentItem="True"></ListBox>
+                    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Path=科目別順位/順位}" IsReadOnly="True" Grid.Column="1"/>
+                    <Button Content="順位" Grid.Row="1" Grid.Column="1" Margin="3" Height="23" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Command="{Binding Path=科目別順位Command}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="教科別得点分析">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Path=教科分析}" IsReadOnly="True"/>
+                    <Button Content="分析" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Command="{Binding Path=教科分析Command}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="検索">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Path=検索結果}" IsReadOnly="True" />
+                    
+                    <Button Content="検索" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Right" VerticalAlignment="Center" Width="75" Command="{Binding Path=検索Command}"/>
+                    <ComboBox Grid.Row="1" Height="24" HorizontalAlignment="Left" Margin="33,3,0,0" Name="comboBox1" VerticalAlignment="Top" Width="120"
+                              ItemsSource="{Binding クラス一覧}" SelectedValue="{Binding 選択クラス}"/>
+                    <ComboBox Height="24" HorizontalAlignment="Left" Margin="159,3,0,0" Name="comboBox2" VerticalAlignment="Top" Width="120" Grid.Row="1"
+                              ItemsSource="{Binding 科目一覧}" SelectedValue="{Binding 選択科目}"/>
+                    <ComboBox Height="24" HorizontalAlignment="Left" Margin="285,3,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1"
+                              ItemsSource="{Binding 男女一覧}" SelectedValue="{Binding 選択男女}"/>
+                    <TextBox Grid.Row="1" Height="24" HorizontalAlignment="Left" Margin="411,3,0,0" Name="textBox1" VerticalAlignment="Top" Width="120"
+                             Text="{Binding 検索文字列}"/>
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqStudy2", "LinqStudy2\LinqStudy2.csproj", "{C496C318-8706-4013-A899-6FDF1AFE3869}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleLinq", "SampleLinq\SampleLinq.csproj", "{8F182F81-1628-4BCB-8073-597CBF136FBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C496C318-8706-4013-A899-6FDF1AFE3869}.Debug|x86.ActiveCfg = Debug|x86
+		{C496C318-8706-4013-A899-6FDF1AFE3869}.Debug|x86.Build.0 = Debug|x86
+		{C496C318-8706-4013-A899-6FDF1AFE3869}.Release|x86.ActiveCfg = Release|x86
+		{C496C318-8706-4013-A899-6FDF1AFE3869}.Release|x86.Build.0 = Release|x86
+		{8F182F81-1628-4BCB-8073-597CBF136FBF}.Debug|x86.ActiveCfg = Debug|x86
+		{8F182F81-1628-4BCB-8073-597CBF136FBF}.Debug|x86.Build.0 = Debug|x86
+		{8F182F81-1628-4BCB-8073-597CBF136FBF}.Release|x86.ActiveCfg = Release|x86
+		{8F182F81-1628-4BCB-8073-597CBF136FBF}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

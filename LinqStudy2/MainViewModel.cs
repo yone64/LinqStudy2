@@ -1,0 +1,140 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using LinqStudy2.Data;
+using GalaSoft.MvvmLight;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using System.Collections;
+
+namespace LinqStudy2
+{
+    class MainViewModel : ViewModelBase
+    {
+        #region 秘密
+        public MainViewModel()
+        {
+            GetAllStudentsCommand = new RelayCommand(() => AllStudents = DataSource.GetAll生徒());
+            学年総合順位Command = new RelayCommand(Create学年総合順位);
+            クラス別順位Command = new RelayCommand(Createクラス別順位);
+            科目別順位Command = new RelayCommand(Create科目別順位);
+            教科分析Command = new RelayCommand(Create科目分析);
+            検索Command = new RelayCommand(検索);
+
+            科目一覧 = new[] { "" }.Concat(DataSource.GetAll科目().Select(a => a.試験名)).ToList();
+            クラス一覧 = new List<string> { "", "A", "B", "C", "D", "E", "F" };
+            男女一覧 = new List<string> { "", "男", "女" };
+
+        }
+
+        public List<string> 科目一覧 { get; private set; }
+        public List<string> クラス一覧 { get; private set; }
+        public List<string> 男女一覧 { get; private set; }
+        public string 選択科目 { get; set; }
+        public string 選択クラス { get; set; }
+        public string 選択男女 { get; set; }
+        public string 検索文字列 { get; set; }
+
+        private IList _検索結果;
+
+        public IList 検索結果
+        {
+            get { return _検索結果; }
+            set
+            {
+                Set(() => 検索結果, ref _検索結果, value);
+            }
+        }
+
+
+
+        private IList allStudents;
+
+        public IList AllStudents
+        {
+            get { return allStudents; }
+            set
+            {
+                Set(() => AllStudents, ref allStudents, value);
+            }
+        }
+
+        private IList _学年総合順位;
+
+        public IList 学年総合順位
+        {
+            get { return _学年総合順位; }
+            set
+            {
+                Set(() => 学年総合順位, ref _学年総合順位, value);
+            }
+        }
+
+        private IList _クラス別順位;
+
+        public IList クラス別順位
+        {
+            get { return _クラス別順位; }
+            set
+            {
+                Set(() => クラス別順位, ref _クラス別順位, value);
+            }
+        }
+
+        private IList _科目別順位;
+
+        public IList 科目別順位
+        {
+            get { return _科目別順位; }
+            set
+            {
+                Set(() => 科目別順位, ref _科目別順位, value);
+            }
+        }
+
+        private IList _教科分析;
+
+        public IList 教科分析
+        {
+            get { return _教科分析; }
+            set
+            {
+                Set(() => 教科分析, ref _教科分析, value);
+            }
+        }
+
+        public ICommand GetAllStudentsCommand { get; private set; }
+
+        public ICommand 学年総合順位Command { get; private set; }
+
+        public ICommand クラス別順位Command { get; private set; }
+
+        public ICommand 科目別順位Command { get; private set; }
+
+        public ICommand 教科分析Command { get; private set; }
+
+        public ICommand 検索Command { get; private set; }
+        #endregion
+        
+        public void Create学年総合順位()
+        {
+        }
+
+        public void Createクラス別順位()
+        {
+        }
+
+        public void Create科目別順位()
+        {
+        }
+
+        public void Create科目分析()
+        {
+        }
+
+        public void 検索()
+        {
+        }
+    }
+}
