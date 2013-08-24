@@ -189,6 +189,37 @@ namespace LinqStudy2
 
         public void 検索()
         {
+            var source = DataSource.GetAll生徒().SelectMany(s => s.成績, (a, b) => new { a, b });
+
+            if (!string.IsNullOrEmpty(this.選択クラス))
+            {
+                source = source.Where(a => a.a.クラス == this.選択クラス);
+            }
+
+            if (!string.IsNullOrEmpty(this.選択科目))
+            {
+                source = source.Where(a => a.b.試験名 == this.選択科目);
+            }
+
+            if (!string.IsNullOrEmpty(this.選択男女))
+            {
+                source = source.Where(a => a.a.性別 == this.選択男女);
+            }
+
+            if (!string.IsNullOrEmpty(this.検索文字列))
+            {
+                source = source.Where(a => (a.a.姓 + a.a.名).Contains(this.検索文字列) || (a.a.セイ + a.a.メイ).Contains(this.検索文字列));
+            }
+
+            検索結果 = source.Select(a => new
+            {
+                クラス = a.a.クラス,
+                名前 = a.a.姓 + " " + a.a.名,
+                フリガナ = a.a.セイ + "  " + a.a.メイ,
+                性別 = a.a.性別,
+                科目 = a.b.試験名,
+                得点 = a.b.得点
+            }).ToList();
         }
     }
 }
