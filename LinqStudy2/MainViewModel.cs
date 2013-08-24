@@ -119,6 +119,18 @@ namespace LinqStudy2
         
         public void Create学年総合順位()
         {
+            学年総合順位 = DataSource.GetAll生徒().Select(s => new { 生徒情報 = s, 合計点 = s.成績.Sum(a => a.得点) })
+                    .OrderByDescending(a => a.合計点)
+                    .Select((a, i) =>
+                        new
+                        {
+                            順位 = i + 1,
+                            クラス = a.生徒情報.クラス,
+                            氏名 = a.生徒情報.姓 + " " + a.生徒情報.名,
+                            合計点 = a.合計点
+                        })
+                    .Take(100)
+                    .ToList();
         }
 
         public void Createクラス別順位()
