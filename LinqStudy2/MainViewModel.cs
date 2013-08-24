@@ -153,6 +153,20 @@ namespace LinqStudy2
 
         public void Create科目別順位()
         {
+            教科分析 = DataSource.GetAll科目().GroupJoin(
+                            DataSource.GetAll生徒().SelectMany(s => s.成績),
+                            a => a.試験名, b => b.試験名, (a, b) => new { a, b })
+                        .Select(g => new { g.a.教科名, g.a.試験名, g.a.満点, Source = g.b.Select(s => s.得点).ToList() })
+                        .Select(g => new
+                        {
+                            教科名 = g.教科名,
+                            試験名 = g.試験名,
+                            満点 = g.満点,
+                            受験者数 = g.Source.Count,
+                            最高点 = g.Source.Max(),
+                            最低点 = g.Source.Min(),
+                            平均点 = g.Source.Average(),
+                        }).ToList();
         }
 
         public void Create科目分析()
